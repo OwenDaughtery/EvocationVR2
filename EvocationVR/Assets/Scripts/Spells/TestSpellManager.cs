@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TestSpellManager : SpellManager
 {
+    public float velocity;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,24 @@ public class TestSpellManager : SpellManager
         
     }
 
+    public override void setUp(GameObject endOfWandObject, GameObject wandObject)
+    {
+        //set position of bullet
+        Vector3 wandPos = endOfWandObject.transform.position;
+        Vector3 wandDirection = endOfWandObject.transform.forward;
+        Quaternion wandRotation = endOfWandObject.transform.rotation;
+        Vector3 spawnPos = wandPos;
+
+        this.gameObject.transform.position = spawnPos;
+
+        this.gameObject.transform.rotation = wandRotation;
+
+        this.gameObject.GetComponent<Rigidbody>().velocity = this.gameObject.transform.TransformDirection(new Vector3(0, velocity, 0));
+
+        this.gameObject.SetActive(true);
+    }
+
+
 
     public override void pushCollision(Collision other)
     {
@@ -32,6 +52,15 @@ public class TestSpellManager : SpellManager
 
     void applyForcePush(Collision other)
     {
+        print("test");
+        other.gameObject.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        Vector3 center = transform.position;
+        Vector3 contactedAt = transform.GetComponent<SphereCollider>().ClosestPointOnBounds(other.transform.position);
+        Vector3 pushedDirection = (gameObject.GetComponent<Rigidbody>().velocity).normalized;
+
+
+        other.gameObject.GetComponent<Rigidbody>().AddForce(pushedDirection * force, ForceMode.Impulse);
+
 
         //Vector3 center = transform.position;
         //Vector3 contactedAt = transform.GetComponent<SphereCollider>().ClosestPointOnBounds(other.transform.position);

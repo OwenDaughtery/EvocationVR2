@@ -197,7 +197,9 @@ MonoBehaviour:
   damage:
     baseValue: 1
   armour:
-    baseValue: 1
+    baseValue: 5
+  bluntResistance:
+    baseValue: 15
   itemToReplaceWith: BrokenEnemy
 --- !u!114 &906308204
 MonoBehaviour:

@@ -19,6 +19,7 @@ TagManager:
   - Object
   - BrokenMarbleCube
   - BrokenSteelCube
+  - LightningSpell
   layers:
   - Default
   - TransparentFX

@@ -23,12 +23,12 @@ public class MagnitudeManager : MonoBehaviour
 
             if (this.GetComponent<Rigidbody>().velocity.magnitude > stats.armour.getValue())
             {
-                stats.TakeDamage(this.GetComponent<Rigidbody>().velocity.magnitude, collision.transform.name);
+                stats.TakeDamage(this.GetComponent<Rigidbody>().velocity.magnitude, collision.transform.tag);
             }
             else if (collision.transform.GetComponent<Rigidbody>().velocity.magnitude > stats.armour.getValue())
             {
 
-                stats.TakeDamage(collision.transform.GetComponent<Rigidbody>().velocity.magnitude, collision.transform.name);
+                stats.TakeDamage(collision.transform.GetComponent<Rigidbody>().velocity.magnitude, collision.transform.tag);
             }
         }
     }

@@ -32,6 +32,14 @@ public class ForceSpellManager : SpellManager
         updatePosition();
     }
 
+    public override void setUp(GameObject endOfWandObject, GameObject wandObject)
+    {
+        base.setUp(endOfWandObject, wandObject);
+        Vector3 spawnPos = wandObject.transform.parent.transform.position;
+        this.gameObject.transform.position = spawnPos;
+        this.gameObject.SetActive(true);
+    }
+
     public override void deactivate()
     {
         base.deactivate();
@@ -46,18 +54,19 @@ public class ForceSpellManager : SpellManager
     }
 
     void applyForcePush(Collider other) {
+
+        
+
         Vector3 center = transform.position;
         Vector3 contactedAt = transform.GetComponent<CapsuleCollider>().ClosestPointOnBounds(other.transform.position);
         Vector3 pushedDirection = (contactedAt - center).normalized;
+        other.GetComponent<Rigidbody>().AddForce(pushedDirection *  force, ForceMode.Impulse);
         //Debug.Log("center: " + center);
         //Debug.Log("contacted at: " + contactedAt);
 
-        other.gameObject.GetComponent<Rigidbody>().velocity = (pushedDirection * force)/other.gameObject.GetComponent<Rigidbody>().mass;
+        //other.gameObject.GetComponent<Rigidbody>().velocity = (pushedDirection * force)/other.gameObject.GetComponent<Rigidbody>().mass;
 
-        //other.gameObject.transform.LookAt(-transform.position);
-        //other.gameObject.transform.Translate(0.0f, 0.0f, 15 * Time.deltaTime);
 
-        //edge - center will give a vector.
     }
 
 

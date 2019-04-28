@@ -1079,6 +1079,10 @@ MonoBehaviour:
     objectToPool: {fileID: 2470912950719456495, guid: 80089f2d9974c214bad6bb81628ca224,
       type: 3}
     shouldExpand: 0
+  - amountToPool: 10
+    objectToPool: {fileID: 1168696733360291217, guid: c046968276a248d408207c4e2d026997,
+      type: 3}
+    shouldExpand: 0
 --- !u!4 &803268536
 Transform:
   m_ObjectHideFlags: 0
@@ -1344,6 +1348,8 @@ MonoBehaviour:
   damage:
     baseValue: 0
   armour:
+    baseValue: 0
+  bluntResistance:
     baseValue: 0
 --- !u!1001 &1155193812
 PrefabInstance:

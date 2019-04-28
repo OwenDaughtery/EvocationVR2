@@ -26,6 +26,7 @@ public class WandManager : MonoBehaviour
         spellCosts.Add("ArcSpell", 0.1f); //2 
         spellCosts.Add("WardSpell", 0.1f); //1.25
         spellCosts.Add("ForceSpell", 0.1f); //5
+        spellCosts.Add("LightningSpell", 0.1f); //4
     }
 
     // Update is called once per frame
@@ -38,79 +39,35 @@ public class WandManager : MonoBehaviour
     }
 
     private void anyKeyPressed() {
-        if (Input.GetKeyDown("e"))
+        if (Input.GetKeyDown("1"))
         {
             shootSpell("TestSpell");
         }
         /*if (Input.GetKeyDown("q")) {
             shootSpell("ArcSpell");
         }*/
-        if (Input.GetKeyDown("r")) {
-            shootSpell("WardSpell");
-        }
-        if (Input.GetKeyDown("q")){
+        if (Input.GetKeyDown("2")){
             shootSpell("ForceSpell");
+        }
+        if (Input.GetKeyDown("3")) {
+            shootSpell("LightningSpell");
+        }
+        if (Input.GetKeyDown("4"))
+        {
+            shootSpell("WardSpell");
         }
     }
 
     private void shootSpell(string tag)
     {
-        if (tag == "TestSpell" && manaManager.subtractMana(spellCosts[tag]))
-        {
-            GameObject testSpell = ObjectPoolerManager.SharedInstance.GetPooledObject(tag);
-            if (testSpell != null)
-            {
-                //set position of bullet
-                Vector3 wandPos = endOfWand.position;
-                Vector3 wandDirection = endOfWand.forward;
-                Quaternion wandRotation = endOfWand.rotation;
-                Vector3 spawnPos = wandPos;
-
-
-                testSpell.transform.position = spawnPos;
-
-                testSpell.transform.rotation = wandRotation;
-                testSpell.SetActive(true);
-                testSpell.GetComponent<MeshRenderer>().enabled = true;
-
-                testSpell.GetComponent<Rigidbody>().velocity = testSpell.transform.TransformDirection(new Vector3(0, speed, 0));
-
+        if (manaManager.subtractMana(spellCosts[tag])) {
+            GameObject spell = ObjectPoolerManager.SharedInstance.GetPooledObject(tag);
+            //spell.transform.parent = this.gameObject.transform;
+            if (spell) {
+                spell.GetComponent<SpellManager>().setUp(endOfWand.gameObject, this.gameObject);
             }
         }
-        else if (tag == "ArcSpell" && manaManager.subtractMana(spellCosts[tag]))
-        {
-        }
-        else if (tag == "WardSpell" && manaManager.subtractMana(spellCosts[tag]))
-        {
-            GameObject wardSpell = ObjectPoolerManager.SharedInstance.GetPooledObject(tag);
-            if (wardSpell != null)
-            {
-                //set position
-                Vector3 wandPos = endOfWand.position;
-                Vector3 wandDirection = endOfWand.forward;
-                float direction = this.gameObject.transform.eulerAngles.y + 90f;
-                //Quaternion wandRotation = endOfWand.rotation;
-                Vector3 spawnPos = wandPos;
-
-
-                wardSpell.transform.position = spawnPos;
-
-                wardSpell.transform.localEulerAngles = new Vector3(0f, direction, 0f);
-                wardSpell.SetActive(true);
-
-                //testSpell.GetComponent<Rigidbody>().velocity = testSpell.transform.TransformDirection(new Vector3(0, speed, 0));
-
-            }
-        }
-        else if (tag == "ForceSpell" && manaManager.subtractMana(spellCosts[tag])) {
-            GameObject forceSpell = ObjectPoolerManager.SharedInstance.GetPooledObject(tag);
-            if (forceSpell) {
-                //set position
-                Vector3 spawnPos = transform.parent.transform.position;
-                forceSpell.transform.position = spawnPos;
-                forceSpell.SetActive(true);
-            }
-        }
+        
 
 
     }

@@ -18,7 +18,10 @@ public class SpellManager : MonoBehaviour
     private void OnEnable()
     {
         currentLifeTime = 0f;
+    }
 
+    public virtual void setUp(GameObject endOfWandObject, GameObject wandObject) {
+        
     }
 
     // Start is called before the first frame update
@@ -67,7 +70,7 @@ public class SpellManager : MonoBehaviour
         if (other.gameObject.layer == 13) {
             //Debug.Log(other.transform.name);
             pushCollision(other);
-            other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage, transform.gameObject.name);
+            other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage, transform.gameObject.tag);
         }
 
         //if the item is something that should destroy the spell
@@ -114,7 +117,7 @@ public class SpellManager : MonoBehaviour
         {
 
             pushCollider(other);
-            other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage, transform.gameObject.name);
+            other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage, transform.gameObject.tag);
         }
 
         //if the item is an enemy
@@ -122,7 +125,7 @@ public class SpellManager : MonoBehaviour
         {
             //Debug.Log(other.transform.name);
             pushCollider(other);
-            other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage, transform.gameObject.name);
+            other.gameObject.GetComponent<CharacterStats>().TakeDamage(damage, transform.gameObject.tag);
         }
 
         //something that should destroy the spells

@@ -191,10 +191,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5780fa0f7835fb8409a0dce70b95dc17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  force: 3000
+  force: 40
   damage: 0
   maxLifeTime: 0.3
   currentLifeTime: 0
   tag: 
   tagsToIngore: []
   layersToIgnore: 090000000b000000
+  velocity: 50

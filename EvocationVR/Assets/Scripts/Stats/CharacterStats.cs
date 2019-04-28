@@ -9,6 +9,7 @@ public class CharacterStats : MonoBehaviour
 
     public Stat damage;
     public Stat armour;
+    public Stat bluntResistance;
 
     private void Awake()
     {
@@ -16,13 +17,28 @@ public class CharacterStats : MonoBehaviour
     }
 
 
-    public void TakeDamage(float damage, string dealer) {
+    public void TakeDamage(float damage, string dealerTag) {
+
+        //If the damage dealer isn't a spell (aka a flying object), check that it's travelling faster than blunt resistance, otherwise just reduce armour.
+        if (dealerTag != "Spell") {
+            if (damage > bluntResistance.getValue())
+            {
+                damage -= armour.getValue();
+            }
+            else {
+                damage = 0f;
+            }
+            
+        }
+        else {
+            damage -= armour.getValue();
+        }
+
         
-        damage -= armour.getValue();
         damage = Mathf.Clamp(damage, 0, int.MaxValue);
 
         currentHealth -= damage;
-        Debug.Log(transform.name + " takes " + damage + " from " + dealer);
+        Debug.Log(transform.name + " takes " + damage + " from " + dealerTag);
         if (currentHealth <= 0) {
             die();
         }

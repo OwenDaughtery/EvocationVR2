@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7611493761181866370}
   - component: {fileID: 2433346834130400882}
   - component: {fileID: 9062192658868609734}
-  - component: {fileID: 4551305588955934196}
+  - component: {fileID: 8701647093789535759}
   m_Layer: 9
   m_Name: WardSpell
   m_TagString: WardSpell
@@ -59,7 +59,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: c3ca6a16ed44b694f99061252ed4cd9f, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +92,7 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4551305588955934196
+--- !u!114 &8701647093789535759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,13 +101,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 7636091984937274413}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 116f1798f73254c408dba47300f6c557, type: 3}
+  m_Script: {fileID: 11500000, guid: 4a80468b33f895f469410b02ea80348f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  areaOfEffect: 0.01
-  whatIsDestructible:
-    serializedVersion: 2
-    m_Bits: 0
+  force: 0
   damage: 0
   maxLifeTime: 1
   currentLifeTime: 0
